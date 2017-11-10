@@ -6,12 +6,14 @@ class Search extends React.Component {
     this.state = {
       searchValue: ''
     }
-    this.handleSearch = this.handleSearch.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSearch(event) {
-    event.preventDefault();
+  handleSubmit(event) {
     console.log(this.state.searchValue);
+    
+    event.preventDefault();
+    this.props.handleSearch(this.state.searchValue);
     this.setState({
       searchValue: ''
     });
@@ -21,9 +23,9 @@ class Search extends React.Component {
     return (
       <div>
         <h3>Search Bar Here</h3>
-        <form onSubmit={ (event) => { this.handleSearch(event) }} >
+        <form onSubmit={ (event) => { this.handleSubmit(event) }} >
           <input value={this.state.searchValue} onChange={ (event) => { this.setState({ searchValue: event.target.value }) } }/>
-          <button type="button" onClick={ (event) => { this.handleSearch(event) } }/>
+          <button type="button" onClick={ (event) => { this.handleSubmit(event) } }/>
         </form>
       </div>
     );

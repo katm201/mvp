@@ -11,12 +11,19 @@ class App extends React.Component{
       address: '944 Market Street, San Francisco CA 94102',
       reps: hrReps.officials
     }
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(value) {
+    this.setState({
+      address: value
+    });
   }
 
   render() {
     return (
       <div>
-        <Search />
+        <Search handleSearch={this.handleSearch} />
         <UserMap address={this.state.address} />
         <RepList reps={this.state.reps} />
       </div>
