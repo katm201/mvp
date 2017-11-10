@@ -1015,3 +1015,5 @@ const hrReps = {
   }
  ]
 };
+
+export default hrReps;
