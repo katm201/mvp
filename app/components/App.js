@@ -6,14 +6,16 @@ import RepList from './repList';
 class App extends React.Component{
   constructor(props) {
     super(props);
+    this.state = {
+      address: '944 Market Street, San Francisco CA 94102'
+    }
   }
 
   render() {
     return (
       <div>
-        <h3>App level</h3>
         <Search />
-        <UserMap />
+        <UserMap address={this.state.address} />
         <RepList />
       </div>
     );
