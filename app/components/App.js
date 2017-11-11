@@ -8,11 +8,14 @@ import hrReps from './dummy-data/repsByAddress';
 class App extends React.Component{
   constructor(props) {
     super(props);
+    let email = prompt('Please enter your email:');
     this.state = {
       // default values for everything to render
+      email: email,
       address: '944 Market Street, San Francisco CA 94102',
       reps: hrReps.officials
     }
+    console.log(email);
     this.handleSearch = this.handleSearch.bind(this);
     this.renderRequests = this.renderRequests.bind(this);
   }
@@ -37,7 +40,7 @@ class App extends React.Component{
   getInfo() {
     let renderRequests = this.renderRequests;
 
-    axios.get('/user', { params: { address: this.state.address } })
+    axios.get('/user', { params: { address: this.state.address, email: this.state.email } })
       .then( (response) => {
         let voterInfo = response.data.voterInfo;
         renderRequests(voterInfo);
