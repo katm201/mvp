@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
+import getVoterInfo from './middleware/voterInfo';
 
 const app = express();
 
@@ -16,9 +17,9 @@ app.get('/', (request, response) => {
   response.sendFile(indexPath);
 });
 
-app.post('/user', (request, response) => {
+app.post('/user', getVoterInfo, (request, response) => {
   console.log(request.body);
   response.end();
-})
+});
 
 export default app;
