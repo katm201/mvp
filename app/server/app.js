@@ -17,7 +17,12 @@ app.get('/', (request, response) => {
   response.sendFile(indexPath);
 });
 
-app.get('/user', getVoterInfo, (request, response) => {
+// serves up our home page for the user, if they login
+app.get('/user', (request, response) => {
+  response.sendFile(indexPath);
+});
+
+app.get('/users', getVoterInfo, (request, response) => {
   let data = {
     voterInfo: request.voterInfo
   };
@@ -25,7 +30,7 @@ app.get('/user', getVoterInfo, (request, response) => {
   response.end(JSON.stringify(data));
 });
 
-app.post('/user', getVoterInfo, (request, response) => {
+app.post('/users', getVoterInfo, (request, response) => {
   let data = {
     voterInfo: request.voterInfo
   };
