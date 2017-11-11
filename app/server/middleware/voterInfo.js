@@ -3,6 +3,17 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const googleVoterInfoHelper = (address, callback) => {
+  axios.get(`https://www.googleapis.com/civicinfo/v2/representatives?key=${process.env.GOOGLE}&address=${address}&includeOffices=true`)
+    .then( (data) => {
+      callback(null, data.data);
+    })
+    .catch( (err) => {
+      callback(err, null);
+    });
+}
+
+
 const getVoterInfo = (request, response, next) => {
   
   let address;
@@ -19,15 +30,15 @@ const getVoterInfo = (request, response, next) => {
     address = request.query.address;
   }
 
-  axios.get(`https://www.googleapis.com/civicinfo/v2/representatives?key=${process.env.GOOGLE}&address=${address}&includeOffices=true`)
-    .then( (data) => {
-      request.voterInfo = data.data;
+  googleVoterInfoHelper(address, function(err, data) {
+    if (err) {
+      console.error(err);
+      response.status(500).send('Issue with the Google API');
+    } else {
+      request.voterInfo = data;
       next();
-    })
-    .catch( (err) => {
-      console.log(err);
-      next();
-    });
+    }
+  });
 
 };
 
