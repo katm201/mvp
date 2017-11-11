@@ -27,7 +27,8 @@ class App extends React.Component{
 
     let renderRequests = this.renderRequests;
 
-    axios.post('/user', { params: { address: value } })
+    let path = `/users?email=${this.state.email}&address=${this.state.address}`
+    axios.post(path)
       .then( (response) => { 
         let voterInfo = response.data.voterInfo;
         renderRequests(voterInfo);
@@ -35,12 +36,11 @@ class App extends React.Component{
       .catch( (err) => { console.log(err) } )
   }
 
-  // for initial GET request
-  // later, will do setInterval to fetch tweets
-  getInfo() {
+  getInfo(loggedIn) {
     let renderRequests = this.renderRequests;
 
-    axios.get('/users', { params: { address: this.state.address, email: this.state.email } })
+    let path = `/users?email=${this.state.email}&address=${this.state.address}`
+    axios.get(path)
       .then( (response) => {
         let voterInfo = response.data.voterInfo;
         renderRequests(voterInfo);
@@ -80,8 +80,8 @@ class App extends React.Component{
       <div>
         <nav>
           <ul>
-            <li><a href="/user" onClick={this.login}> Login </a></li>
-            <li><a href="/" onClick={this.logout}> Logout </a></li>
+            <li><a href="#" onClick={ (event) => { this.login(event) }}> Login </a></li>
+            <li><a href="#" onClick={this.logout}> Logout </a></li>
           </ul>
         </nav>
         <Search handleSearch={this.handleSearch} />

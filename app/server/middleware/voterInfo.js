@@ -13,26 +13,20 @@ const googleVoterInfoHelper = (address, callback) => {
     });
 }
 
-
 const getVoterInfo = (request, response, next) => {
-  
-  let address;
+
+  console.log('query: ',request.query);
+  // console.log('body: ',request);
+  let address = request.query.address
 
   // note: redo once we have login data and database,
   // will get address from the database on GET requests
   // from an email parameter in the query,
   // then move onto voter info
-  if (request.body.params) {
-    // for POSTs
-    address = request.body.params.address
-  } else {
-    // for GETs
-    address = request.query.address;
-  }
 
   googleVoterInfoHelper(address, function(err, data) {
     if (err) {
-      console.error(err);
+      // console.error(err);
       response.status(500).send('Issue with the Google API');
     } else {
       request.voterInfo = data;
