@@ -27,23 +27,23 @@ class App extends React.Component{
 
     let renderRequests = this.renderRequests;
 
-    let path = `/users?email=${this.state.email}&address=${this.state.address}`
+    let path = `/users?email=${this.state.email}&address=${value}`
     axios.post(path)
       .then( (response) => { 
-        let voterInfo = response.data.voterInfo;
-        renderRequests(voterInfo);
+        renderRequests(response.data);
       })
       .catch( (err) => { console.log(err) } )
   }
 
-  getInfo(loggedIn) {
+  getInfo(email) {
+    email = email || this.state.email;
+
     let renderRequests = this.renderRequests;
 
-    let path = `/users?email=${this.state.email}&address=${this.state.address}`
+    let path = `/users?email=${email}&address=${this.state.address}`
     axios.get(path)
       .then( (response) => {
-        let voterInfo = response.data.voterInfo;
-        renderRequests(voterInfo);
+        renderRequests(response.data);
       })
       .catch( (err) => { console.log(err) })
   }
@@ -54,14 +54,16 @@ class App extends React.Component{
       email: email
     });
     console.log(email);
-    this.getInfo()
+    this.getInfo(email)
   }
 
   logout() {
     this.setState({
-      email: 'default_user'
+      email: 'default_user',
+      address: '944 Market Street, San Francisco CA 94102'
     });
-    this.getInfo()
+    console.log(this.state.email);
+    this.getInfo('default_user');
   }
 
   componentDidMount() {
@@ -69,9 +71,10 @@ class App extends React.Component{
     this.getInfo();
   }
 
-  renderRequests(data) {
+  renderRequests(info) {
     this.setState({
-      reps: data.officials
+      reps: info.voterInfo.officials,
+      address: info.address
     });
   } 
 
@@ -80,8 +83,8 @@ class App extends React.Component{
       <div>
         <nav>
           <ul>
-            <li><a href="#" onClick={ (event) => { this.login(event) }}> Login </a></li>
-            <li><a href="#" onClick={this.logout}> Logout </a></li>
+            <li><a href="#" onClick={ this.login }> Login </a></li>
+            <li><a href="#" onClick={ this.logout }> Logout </a></li>
           </ul>
         </nav>
         <Search handleSearch={this.handleSearch} />

@@ -26,6 +26,7 @@
   "homepage": "https://github.com/katm201/hrsf83-mvp#readme",
   "dependencies": {
     "axios": "^0.17.0",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",

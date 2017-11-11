@@ -1,5 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
+import Voter from '../database/db';
 
 dotenv.config();
 
@@ -16,17 +17,11 @@ const googleVoterInfoHelper = (address, callback) => {
 const getVoterInfo = (request, response, next) => {
 
   console.log('query: ',request.query);
-  // console.log('body: ',request);
-  let address = request.query.address
 
-  // note: redo once we have login data and database,
-  // will get address from the database on GET requests
-  // from an email parameter in the query,
-  // then move onto voter info
+  let address = request.query.address
 
   googleVoterInfoHelper(address, function(err, data) {
     if (err) {
-      // console.error(err);
       response.status(500).send('Issue with the Google API');
     } else {
       request.voterInfo = data;

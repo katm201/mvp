@@ -17,10 +17,10 @@ const voterSchema = mongoose.Schema({
     type: String,
     lowercase: true,
     checkRequired: true
-  },
-  voterInfo: {
-    type: Mixed
-  }
+  } //,
+  // voterInfo: {
+  //   type: Mixed
+  // }
 });
 
 var db = mongoose.connection;
