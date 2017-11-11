@@ -18,8 +18,12 @@ app.get('/', (request, response) => {
   response.sendFile(indexPath);
 });
 
-// serves up our home page for unlogged-in users
-app.get('/users', dbCheckEmail, getVoterInfo, (request, response) => {
+
+
+app.use(dbCheckEmail);
+app.use(getVoterInfo);
+
+app.get('/users', /*dbCheckEmail, getVoterInfo,*/ (request, response) => {
   let data = {
     voterInfo: request.voterInfo,
     address: request.query.address
@@ -28,12 +32,14 @@ app.get('/users', dbCheckEmail, getVoterInfo, (request, response) => {
   response.end(JSON.stringify(data));
 });
 
-// allows searches
-app.post('/users', dbCheckEmail, getVoterInfo, (request, response) => {
+app.post('/users', /*dbCheckEmail, getVoterInfo,*/ (request, response) => {
+  console.log('post: ', request.voterInfo);
   let data = {
     voterInfo: request.voterInfo,
     address: request.query.address
   };
+
+  console.log('about to POST: ', data);
 
   response.end(JSON.stringify(data));
 });

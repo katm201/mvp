@@ -35,12 +35,13 @@ class App extends React.Component{
       .catch( (err) => { console.log(err) } )
   }
 
-  getInfo(email) {
+  getInfo(email, address) {
     email = email || this.state.email;
+    address = address || this.state.address;
 
     let renderRequests = this.renderRequests;
 
-    let path = `/users?email=${email}&address=${this.state.address}`
+    let path = `/users?email=${email}&address=${address}`
     axios.get(path)
       .then( (response) => {
         renderRequests(response.data);
@@ -53,7 +54,6 @@ class App extends React.Component{
     this.setState({
       email: email
     });
-    console.log(email);
     this.getInfo(email)
   }
 
@@ -62,8 +62,7 @@ class App extends React.Component{
       email: 'default_user',
       address: '944 Market Street, San Francisco CA 94102'
     });
-    console.log(this.state.email);
-    this.getInfo('default_user');
+    this.getInfo('default_user', '944 Market Street, San Francisco CA 94102');
   }
 
   componentDidMount() {
@@ -72,6 +71,7 @@ class App extends React.Component{
   }
 
   renderRequests(info) {
+    console.log(info);
     this.setState({
       reps: info.voterInfo.officials,
       address: info.address
