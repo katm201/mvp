@@ -13,6 +13,7 @@ class App extends React.Component{
       reps: hrReps.officials
     }
     this.handleSearch = this.handleSearch.bind(this);
+    this.renderRequests = this.renderRequests.bind(this);
   }
 
   handleSearch(value) {
@@ -20,11 +21,24 @@ class App extends React.Component{
       address: value
     });
 
+    let renderRequests = this.renderRequests;
+
     axios.post('/user', { params: { address: value } })
-      .then( (response) => { console.log(response) } )
+      .then( (response) => { 
+        // console.log(response);
+        let voterInfo = response.data.voterInfo;
+        renderRequests(voterInfo);
+      })
       .catch( (err) => { console.log(err) } )
 
   }
+
+  renderRequests(data) {
+    this.setState({
+      reps: data.officials
+    });
+    // console.log(this.state.reps);
+  } 
 
   render() {
     return (
