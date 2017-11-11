@@ -2,6 +2,10 @@ import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import getVoterInfo from './middleware/voterInfo';
+// import dotenv from 'dotenv';
+
+// dotenv.config();
+// console.log(process.env.GOOGLE)
 
 const app = express();
 
