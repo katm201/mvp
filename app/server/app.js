@@ -2,10 +2,6 @@ import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import getVoterInfo from './middleware/voterInfo';
-// import dotenv from 'dotenv';
-
-// dotenv.config();
-// console.log(process.env.GOOGLE)
 
 const app = express();
 
@@ -22,8 +18,13 @@ app.get('/', (request, response) => {
 });
 
 app.post('/user', getVoterInfo, (request, response) => {
-  console.log(request.body);
-  response.end();
+  // console.log(request.body);
+  let data = {
+    voterInfo: request.voterInfo
+  };
+  // console.log(data);
+
+  response.end(JSON.stringify(data));
 });
 
 export default app;

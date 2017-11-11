@@ -8,8 +8,10 @@ const getVoterInfo = (request, response, next) => {
   let address = request.body.params.address;
 
   axios.get(`https://www.googleapis.com/civicinfo/v2/representatives?key=${process.env.GOOGLE}&address=${address}&includeOffices=true`)
-    .then( (response) => {
-      console.log(response);
+    .then( (data) => {
+      // console.log(data.data);
+      request.voterInfo = data.data;
+      // console.log(response.voterInfo)
       next();
     })
     .catch( (err) => {
