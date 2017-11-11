@@ -5,13 +5,23 @@ dotenv.config();
 
 const getVoterInfo = (request, response, next) => {
   
-  let address = request.body.params.address;
+  let address;
+
+  // note: redo once we have login data and database,
+  // will get address from the database on GET requests
+  // from an email parameter in the query,
+  // then move onto voter info
+  if (request.body.params) {
+    // for POSTs
+    address = request.body.params.address
+  } else {
+    // for GETs
+    address = request.query.address;
+  }
 
   axios.get(`https://www.googleapis.com/civicinfo/v2/representatives?key=${process.env.GOOGLE}&address=${address}&includeOffices=true`)
     .then( (data) => {
-      // console.log(data.data);
       request.voterInfo = data.data;
-      // console.log(response.voterInfo)
       next();
     })
     .catch( (err) => {

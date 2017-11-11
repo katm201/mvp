@@ -17,12 +17,18 @@ app.get('/', (request, response) => {
   response.sendFile(indexPath);
 });
 
-app.post('/user', getVoterInfo, (request, response) => {
-  // console.log(request.body);
+app.get('/user', getVoterInfo, (request, response) => {
   let data = {
     voterInfo: request.voterInfo
   };
-  // console.log(data);
+
+  response.end(JSON.stringify(data));
+});
+
+app.post('/user', getVoterInfo, (request, response) => {
+  let data = {
+    voterInfo: request.voterInfo
+  };
 
   response.end(JSON.stringify(data));
 });

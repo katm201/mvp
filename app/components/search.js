@@ -11,7 +11,7 @@ class Search extends React.Component {
 
   handleSubmit(event) {
     console.log(this.state.searchValue);
-    
+
     event.preventDefault();
     this.props.handleSearch(this.state.searchValue);
     this.setState({
@@ -22,7 +22,7 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        <h3>Search Bar Here</h3>
+        <h4>Enter Street Address, City and Zipcode</h4>
         <form onSubmit={ (event) => { this.handleSubmit(event) }} >
           <input value={this.state.searchValue} onChange={ (event) => { this.setState({ searchValue: event.target.value }) } }/>
           <button type="button" onClick={ (event) => { this.handleSubmit(event) } }/>

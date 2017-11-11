@@ -3,7 +3,7 @@ import KEYS from '../../config'
 
 const UserMap = (props) => (
   <div>
-    <h3>Map Here</h3>
+    <h4>Your Home Address</h4>
     <iframe
       width="600"
       height="450"
