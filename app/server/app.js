@@ -1,7 +1,10 @@
 import path from 'path';
 import express from 'express';
+import bodyParser from 'body-parser';
 
 const app = express();
+
+app.use(bodyParser.json());
 
 const publicPath = express.static(path.join(__dirname, '../'));
 const indexPath = path.join(__dirname, '../index.html');
@@ -13,8 +16,8 @@ app.get('/', (request, response) => {
   response.sendFile(indexPath);
 });
 
-app.get('/user', (request, response) => {
-  console.log(request);
+app.post('/user', (request, response) => {
+  console.log(request.body);
   response.end();
 })
 

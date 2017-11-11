@@ -20,7 +20,7 @@ class App extends React.Component{
       address: value
     });
 
-    axios.get('/user', { params: { address: value } })
+    axios.post('/user', { params: { address: value } })
       .then( (response) => { console.log(response) } )
       .catch( (err) => { console.log(err) } )
 
