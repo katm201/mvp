@@ -10,9 +10,12 @@ app.use(publicPath);
 
 // serves our static index page
 app.get('/', (request, response) => {
-  console.log(indexPath);
   response.sendFile(indexPath);
 });
 
+app.get('/user', (request, response) => {
+  console.log(request);
+  response.end();
+})
 
 export default app;

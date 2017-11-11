@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import UserMap from './map';
 import Search from './search';
 import RepList from './repList';
@@ -18,6 +19,11 @@ class App extends React.Component{
     this.setState({
       address: value
     });
+
+    axios.get('/user', { params: { address: value } })
+      .then( (response) => { console.log(response) } )
+      .catch( (err) => { console.log(err) } )
+
   }
 
   render() {
