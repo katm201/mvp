@@ -48,6 +48,7 @@ class App extends React.Component{
     let path = `/users?email=${email}&address=${address}`
     axios.get(path)
       .then( (response) => {
+        console.log(response.data);
         renderRequests(response.data);
       })
       .catch( (err) => { console.log(err) })
@@ -78,7 +79,7 @@ class App extends React.Component{
     this.setState({
       reps: info.voterInfo.officials,
       address: info.address,
-      tweets: info.tweets.statuses
+      tweets: info.tweets
     });
   } 
 

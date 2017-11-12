@@ -13,17 +13,40 @@ var config = {
 };
 
 const getTweets = (request, response, next) => {
-  let searchTerm = request.voterInfo.normalizedInput.state;
+  let randomNum = Math.floor(Math.random() * 8) + 3;
+  
+  let searchTerm;
 
-  console.log(searchTerm);
+  let channels = request.voterInfo.officials[randomNum].channels;
+  let found = false;
+  for (var i = 0; i < channels.length; i++) {
+    if (channels[i].type === 'Twitter') {
+      searchTerm = channels[i].id;
+      found = true;
+    }
+  }
+
   let twitter = new Twitter(config);
-  twitter.getSearch({'q': `#${searchTerm}`, 'count': 10}, (err) => {
-    console.log(err);
-    next();
-  }, (data) => {
-    request.tweets = JSON.parse(data);
-    next();
-  });
+
+  if (!found) {
+    searchTerm = 'thanksobama';
+    twitter.getSearch({'q': `#${searchTerm}`, 'count': 10}, (err) => {
+      console.log(err);
+      next();
+    }, (data) => {
+      let info = JSON.parse(data);
+      request.tweets = info.statuses;
+      next();
+    });
+  } else {
+    twitter.getUserTimeline({'screen_name': `${searchTerm}`, 'count': 10}, (err) => {
+      console.log(err);
+      next();
+    }, (data) => {
+      request.tweets = JSON.parse(data);
+      next();
+    }); 
+  }
 };
 
 export default getTweets;
