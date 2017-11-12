@@ -22,7 +22,6 @@ class App extends React.Component{
     this.renderRequests = this.renderRequests.bind(this);
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    this.twitterSearch = this.twitterSearch.bind(this);
   }
 
   handleSearch(value) {
@@ -85,7 +84,6 @@ class App extends React.Component{
   render() {
     return (
       <div id="app">
-        <h3 onClick={this.twitterSearch}>Click me!</h3>
         <nav className="nav">
           <ul>
             <li><a href="#" onClick={ this.login }> Login </a></li>
