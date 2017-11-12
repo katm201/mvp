@@ -7,7 +7,6 @@ dotenv.config();
 const googleVoterInfoHelper = (address, callback) => {
   axios.get(`https://www.googleapis.com/civicinfo/v2/representatives?key=${process.env.GOOGLE}&address=${address}&includeOffices=true`)
     .then( (data) => {
-      console.log('in helper');
       callback(null, data.data);
     })
     .catch( (err) => {
@@ -25,9 +24,7 @@ const getVoterInfo = (request, response, next) => {
     if (err) {
       response.status(500).send('Issue with the Google API');
     } else {
-      console.log('helper callback');
       request.voterInfo = data;
-      // console.log('about to next: ',request.voterInfo);
       next();
     }
   });

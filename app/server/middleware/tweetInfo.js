@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import Voter from '../database/db';
 import { Twitter } from 'twitter-node-client'
 import dotenv from 'dotenv'
 
@@ -14,9 +13,17 @@ var config = {
 };
 
 const getTweets = (request, response, next) => {
-  let twitter = new Twitter();
-  twitter.getSearch({'q': '#politics', 'count': 15}, error, success)
-}
+  let searchTerm = request.voterInfo.normalizedInput.state;
 
+  console.log(searchTerm);
+  let twitter = new Twitter(config);
+  twitter.getSearch({'q': `#${searchTerm}`, 'count': 10}, (err) => {
+    console.log(err);
+    next();
+  }, (data) => {
+    request.tweets = JSON.parse(data);
+    next();
+  });
+};
 
 export default getTweets;

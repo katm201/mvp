@@ -36,3 +36,4 @@ bower_components/
 
 config.js
 .env
+twitter_config.js

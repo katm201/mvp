@@ -77,7 +77,8 @@ class App extends React.Component{
   renderRequests(info) {
     this.setState({
       reps: info.voterInfo.officials,
-      address: info.address
+      address: info.address,
+      tweets: info.tweets.statuses
     });
   } 
 
