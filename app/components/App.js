@@ -71,7 +71,6 @@ class App extends React.Component{
   }
 
   renderRequests(info) {
-    console.log(info);
     this.setState({
       reps: info.voterInfo.officials,
       address: info.address
@@ -80,16 +79,20 @@ class App extends React.Component{
 
   render() {
     return (
-      <div>
-        <nav>
+      <div id="app">
+        <nav className="nav">
           <ul>
             <li><a href="#" onClick={ this.login }> Login </a></li>
             <li><a href="#" onClick={ this.logout }> Logout </a></li>
           </ul>
         </nav>
-        <Search handleSearch={this.handleSearch} />
-        <UserMap address={this.state.address} />
-        <RepList reps={this.state.reps} />
+        <div className="col-2-3">
+          <Search handleSearch={ this.handleSearch } />
+          <UserMap id="maps" address={ this.state.address } />
+        </div>
+        <div className="col-1-3">
+          <RepList reps={ this.state.reps } />
+        </div>
       </div>
     );
   }

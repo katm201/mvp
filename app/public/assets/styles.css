@@ -128,9 +128,28 @@ cite, em {
   font-style: italic;
 }
 
-
 /*
   ========================================
   Header
   ========================================
 */
+
+header { 
+  height: 150px;
+}
+
+header h1 {
+  display: inline-block;
+  margin: 50px 0 0 10px;
+  text-transform: uppercase;
+}
+
+/*
+  ========================================
+  2-3 COLUMN
+  ========================================
+*/
+
+#app {
+  margin-left: 10px;
+}
