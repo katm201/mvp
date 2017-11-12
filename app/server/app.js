@@ -20,6 +20,7 @@ app.get('/', (request, response) => {
 
 app.use(dbCheckEmail);
 app.use(getVoterInfo);
+// put tweet search here
 
 app.get('/users', (request, response) => {
   let data = {
