@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Voter Information Project
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > A resource for any resident of the U.S. who wants to look up their elected representatives.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > The Voter Information Project allows any U.S. resident to put in their address and see all their elected representatives in one place. It also provides a selection of Tweets from one of their representatives. You can use it either logged in (where it'll remember the last address you searched for) or logged out (where it won't remember anything).
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > The purpose of the app is to improve voter and community engagement with their representatives.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Lots of people don't know who their representatives are or how to contact them--this platform gives people all that information in a single, easy to access place.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Civic engagement is so important, given the current political climate. We should be making it easier to connect with our elected officials, not harder!"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Just type in an address you want to search! It's that simple.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "I love how well organized and easy everything is to access!"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Our project is only the first small step towards civic engagement. Once you know who to contact, it's up to you to give them a call!
