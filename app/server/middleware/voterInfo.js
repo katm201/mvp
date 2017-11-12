@@ -15,9 +15,6 @@ const googleVoterInfoHelper = (address, callback) => {
 }
 
 const getVoterInfo = (request, response, next) => {
-
-  console.log('query: ',request.query);
-
   let address = request.query.address
 
   googleVoterInfoHelper(address, function(err, data) {

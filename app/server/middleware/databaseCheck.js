@@ -28,8 +28,6 @@ const dbCheckEmail = (request, response, next) => {
   let isPost = request.method === 'POST';
   let isUser = request.query.email !== 'default_user';
 
-  console.log('query address:', request.query.address);
-
   Voter.find({email: request.query.email}).exec()
     .then((votersInMongo) => {
 
@@ -42,13 +40,13 @@ const dbCheckEmail = (request, response, next) => {
       // if it's an existing user that's POSTing and doesn't match
       } else if (inDB && isUser && isPost && !matching) {
         // update DB, then send back the original
-        dbUpdateAddress(request.query.email, request.query.email, function() {
+        dbUpdateAddress(request.query.email, request.query.address, function() {
           next();
         });
       // if it's a new user that's POSTing
       } else if (!inDB && isPost) {
         // add to DB, then send back the original
-        dbAddAll(request.query.email, request.query.email, function() {
+        dbAddAll(request.query.email, request.query.address, function() {
           next();
         });
       // otherwise, send back what's in the DB
