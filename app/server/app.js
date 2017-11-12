@@ -21,7 +21,7 @@ app.get('/', (request, response) => {
 app.use(dbCheckEmail);
 app.use(getVoterInfo);
 
-app.get('/users', /*dbCheckEmail, getVoterInfo,*/ (request, response) => {
+app.get('/users', (request, response) => {
   let data = {
     voterInfo: request.voterInfo,
     address: request.query.address
@@ -30,7 +30,7 @@ app.get('/users', /*dbCheckEmail, getVoterInfo,*/ (request, response) => {
   response.end(JSON.stringify(data));
 });
 
-app.post('/users', /*dbCheckEmail, getVoterInfo,*/ (request, response) => {
+app.post('/users', (request, response) => {
   let data = {
     voterInfo: request.voterInfo,
     address: request.query.address
