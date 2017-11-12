@@ -25,7 +25,7 @@ class Search extends React.Component {
         <h4>Enter Street Address, City and Zipcode</h4>
         <form onSubmit={ (event) => { this.handleSubmit(event) }} >
           <input value={this.state.searchValue} onChange={ (event) => { this.setState({ searchValue: event.target.value }) } }/>
-          <button type="button" onClick={ (event) => { this.handleSubmit(event) } }/>
+          <button type="button" onClick={ (event) => { this.handleSubmit(event) } }>Look Up Address</button>
         </form>
       </div>
     );
