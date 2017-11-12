@@ -3,7 +3,9 @@ import axios from 'axios';
 import UserMap from './map';
 import Search from './search';
 import RepList from './repList';
+import Feed from './feed';
 import hrReps from './dummy-data/repsByAddress';
+import fakeTweets from './dummy-data/tweets';
 
 class App extends React.Component{
   constructor(props) {
@@ -12,7 +14,8 @@ class App extends React.Component{
       // default values for everything to render
       email: 'default_user',
       address: '944 Market Street, San Francisco CA 94102',
-      reps: hrReps.officials
+      reps: hrReps.officials,
+      tweets: fakeTweets.statuses
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.renderRequests = this.renderRequests.bind(this);
@@ -89,6 +92,7 @@ class App extends React.Component{
         <div className="col-2-3">
           <Search handleSearch={ this.handleSearch } />
           <UserMap id="maps" address={ this.state.address } />
+          <Feed tweets={this.state.tweets} />
         </div>
         <div className="col-1-3">
           <RepList reps={ this.state.reps } />
