@@ -18,8 +18,6 @@ app.get('/', (request, response) => {
   response.sendFile(indexPath);
 });
 
-
-
 app.use(dbCheckEmail);
 app.use(getVoterInfo);
 
@@ -33,13 +31,10 @@ app.get('/users', /*dbCheckEmail, getVoterInfo,*/ (request, response) => {
 });
 
 app.post('/users', /*dbCheckEmail, getVoterInfo,*/ (request, response) => {
-  console.log('post: ', request.voterInfo);
   let data = {
     voterInfo: request.voterInfo,
     address: request.query.address
   };
-
-  console.log('about to POST: ', data);
 
   response.end(JSON.stringify(data));
 });
